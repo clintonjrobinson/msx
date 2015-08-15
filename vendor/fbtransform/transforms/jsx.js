@@ -125,6 +125,12 @@ function quoteAttrName(attr) {
   if (!/^[a-z_$][a-z\d_$]*$/i.test(attr)) {
     return '"' + attr + '"';
   }
+
+  // Reserved words in JavaScript causes old browsers to complain
+  if (attr === 'class' || attr === 'new') {
+    return '"' + attr + '"';
+  }
+
   return attr;
 }
 
